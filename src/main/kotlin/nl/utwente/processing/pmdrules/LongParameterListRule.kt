@@ -12,7 +12,7 @@ import net.sourceforge.pmd.util.NumericConstants
 class LongParameterListRule : ExcessiveNodeCountRule(ASTFormalParameters::class.java) {
 
     init {
-        setProperty(StatisticalRule.MINIMUM_DESCRIPTOR, 5.0)
+        setProperty(StatisticalRule.MINIMUM_DESCRIPTOR, 6.0)
     }
 
     override fun visit(node: ASTFormalParameter, data: Any): Any {
