@@ -49,12 +49,18 @@ fun ClassScope.callStack(): Map<ASTMethodDeclaration, Set<ASTMethodDeclaration>>
  * @param methods The methods to get the call stacks for.
  */
 fun ClassScope.callStack(vararg methods: MethodNameDeclaration) : Set<ASTMethodDeclaration> {
+    val totalStack = this.callStack();
     val stack = HashSet<ASTMethodDeclaration>()
     for (method in methods) {
         val methodDecl = method.methodNameDeclaratorNode.getFirstParentOfType(ASTMethodDeclaration::class.java)
-        stack.addAll(this.callStack()[methodDecl] ?: emptySet())
+        stack.addAll(totalStack[methodDecl] ?: emptySet())
         stack.add(methodDecl)
     }
+    var size: Int
+    do {
+        size = stack.size
+        HashSet(stack).forEach { m -> stack.addAll(this.callStack()[m] ?: emptySet()) }
+    } while (stack.size != size)
     return stack
 }
 
