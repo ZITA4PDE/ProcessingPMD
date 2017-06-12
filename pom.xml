@@ -79,11 +79,11 @@
 
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/net.sourceforge.pmd/pmd -->
-		<dependency>
+		<!--<dependency>
 			<groupId>net.sourceforge.pmd</groupId>
 			<artifactId>pmd</artifactId>
 			<version>5.7.0</version>
-		</dependency>
+		</dependency>-->
 
 		<!-- https://mvnrepository.com/artifact/net.sourceforge.pmd/pmd-java -->
 		<dependency>
