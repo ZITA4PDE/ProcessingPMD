@@ -9,17 +9,18 @@ val ASTPrimaryExpression.isMethodCall : Boolean
         return this.findChildrenOfType(ASTPrimarySuffix::class.java).stream().filter { s -> s.isArguments }.count() > 0
     }
 
-fun ASTPrimaryExpression.hasLiteralPixels(method: ProcessingAppletMethod) : Boolean {
+fun ASTPrimaryExpression.hasLiteralArguments(method: ProcessingAppletMethod) : Boolean {
     val argumentNode = this.findChildrenOfType(ASTPrimarySuffix::class.java).stream()
             .filter { s -> s.isArguments }.findFirst().orElse(null) ?: return false
     val argumentList = argumentNode.getFirstDescendantOfType(ASTArgumentList::class.java)
     return (0..argumentList.jjtGetNumChildren()-1)
-            .firstOrNull()
-            ?.let {
-                method.parameters[it].pixels &&
-                        argumentList.jjtGetChild(it).findDescendantsOfType(ASTLiteral::class.java).size > 0
+            .map {
+                argumentList.jjtGetChild(it)?.
+                        getFirstChildOfType(ASTPrimaryExpression::class.java)?.
+                        getFirstChildOfType(ASTPrimaryPrefix::class.java)?.
+                        getFirstChildOfType(ASTLiteral::class.java)
             }
-            ?: false;
+            .any { it != null };
 }
 
 fun ASTPrimaryExpression.matches(method: ProcessingAppletMethod) : Boolean {

@@ -4,7 +4,7 @@ import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration
 import net.sourceforge.pmd.lang.java.ast.ASTPrimaryExpression
 import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule
 import nl.utwente.processing.pmdrules.symbols.ProcessingApplet
-import nl.utwente.processing.pmdrules.utils.hasLiteralPixels
+import nl.utwente.processing.pmdrules.utils.hasLiteralArguments
 import nl.utwente.processing.pmdrules.utils.isMethodCall
 import nl.utwente.processing.pmdrules.utils.matches
 
@@ -18,7 +18,7 @@ class PixelHardcodeIgnoranceRule : AbstractJavaRule() {
         if (node.isMethodCall) {
             val match = node.matches(*ProcessingApplet.DRAW_METHODS.toTypedArray())
             match?.let {
-                if (node.hasLiteralPixels(match)) {
+                if (node.hasLiteralArguments(match)) {
                     this.addViolationWithMessage(data, node, message, kotlin.arrayOf(match, method.methodName))
                 }
             }
