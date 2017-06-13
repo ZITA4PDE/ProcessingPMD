@@ -34,9 +34,9 @@ fun ASTPrimaryExpression.matches(method: ProcessingAppletMethod) : Boolean {
                     if (!this.scope.isPartOfTopClassScope) {
                         break@check
                     }
-                } else if(node.getFirstChildOfType(ASTName::class.java).image != method.name) {
+                } else if(node.getFirstChildOfType(ASTName::class.java)?.image != method.name) {
                     break@check
-                } else if(node.getFirstChildOfType(ASTName::class.java).nameDeclaration != null) {
+                } else if(node.getFirstChildOfType(ASTName::class.java)?.nameDeclaration != null) {
                     break@check
                 }
             }
