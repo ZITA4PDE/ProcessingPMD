@@ -14,6 +14,7 @@ fun ASTPrimaryExpression.hasLiteralArguments(method: ProcessingAppletMethod) : B
             .filter { s -> s.isArguments }.findFirst().orElse(null) ?: return false
     val argumentList = argumentNode.getFirstDescendantOfType(ASTArgumentList::class.java)
     return (0..argumentList.jjtGetNumChildren()-1)
+            .filter { method.parameters[it].pixels }
             .map {
                 argumentList.jjtGetChild(it)?.
                         getFirstChildOfType(ASTPrimaryExpression::class.java)?.
