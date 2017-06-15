@@ -11,7 +11,7 @@ class StatelessClassRule : AbstractJavaRule() {
 
     override fun visit(node: ASTClassOrInterfaceDeclaration, data: Any): Any? {
         //Check if this is a top node, not a inner class.
-        if (node.isNested) {
+        if (node.isNested && !node.isInterface && !node.isAbstract) {
             val scope = node.scope as? ClassScope
             val vars = scope?.variableDeclarations?.size ?: 0
             if (vars == 0) {
