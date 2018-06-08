@@ -19,11 +19,11 @@ object ProcessingApplet {
     val DRAW_METHOD_SIGNATURE = "draw()"
     val DRAW_METHODS = setOf(
             //Arc method: https://processing.org/reference/arc_.html
-            ProcessingAppletMethod("arc", repeatedFloatParam(4)),
-            ProcessingAppletMethod("arc", repeatedFloatParam(6, 4)),
+            ProcessingAppletMethod("arc", repeatedFloatParam(4,2)),
+            ProcessingAppletMethod("arc", repeatedFloatParam(6, 2)),
 
             //Ellipse method: https://processing.org/reference/ellipse_.html
-            ProcessingAppletMethod("ellipse", repeatedFloatParam(4)),
+            ProcessingAppletMethod("ellipse", repeatedFloatParam(4, 2)),
 
             //Line method: https://processing.org/reference/line_.html
             ProcessingAppletMethod("line", repeatedFloatParam(4)),
@@ -37,9 +37,9 @@ object ProcessingApplet {
             ProcessingAppletMethod("quad", repeatedFloatParam(8)),
 
             //Rect method: https://processing.org/reference/rect_.html
-            ProcessingAppletMethod("rect", repeatedFloatParam(4)),
-            ProcessingAppletMethod("rect", repeatedFloatParam(5, 4)),
-            ProcessingAppletMethod("rect", repeatedFloatParam(8, 4)),
+            ProcessingAppletMethod("rect", repeatedFloatParam(4, 2)),
+            ProcessingAppletMethod("rect", repeatedFloatParam(5, 2)),
+            ProcessingAppletMethod("rect", repeatedFloatParam(8, 2)),
 
             //Triangle method: https://processing.org/reference/triangle_.html
             ProcessingAppletMethod("triangle", repeatedFloatParam(6, 6)),
@@ -94,6 +94,12 @@ object ProcessingApplet {
             ProcessingAppletMethod("text", listOf(PARAM_INT_NON_PIXEL, *repeatedFloatParam(3).toTypedArray())),
             ProcessingAppletMethod("text", listOf(PARAM_FLOAT_NON_PIXEL, *repeatedFloatParam(2).toTypedArray())),
             ProcessingAppletMethod("text", listOf(PARAM_FLOAT_NON_PIXEL, *repeatedFloatParam(3).toTypedArray()))
+    )
+
+    val MATRIX_METHOD_SIGNATURES = setOf(
+            //MouseClicked handler: https://processing.org/reference/mouseClicked_.html
+            "pushMatrix",
+            "popMatrix"
     )
 
     val EVENT_METHOD_SIGNATURES = setOf(
