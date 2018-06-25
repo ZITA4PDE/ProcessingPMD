@@ -33,7 +33,6 @@ class PixelHardcodeIgnoranceRule : AbstractJavaRule() {
                 pushesMatrix=true
             }
 
-
             val match = node.matches(*ProcessingApplet.DRAW_METHODS.toTypedArray())
             match?.let {
                 if (node.hasLiteralArguments(match)  &&!pushesMatrix ) {
