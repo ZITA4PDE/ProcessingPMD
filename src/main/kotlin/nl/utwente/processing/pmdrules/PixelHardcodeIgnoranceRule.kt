@@ -14,6 +14,7 @@ import nl.utwente.processing.pmdrules.utils.*
 /**
  * Class which implements the pixel hardcode ignorance smell as PMD rule.
  */
+
 class PixelHardcodeIgnoranceRule : AbstractJavaRule() {
 
     private var pushesMatrix = false
