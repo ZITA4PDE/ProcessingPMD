@@ -11,7 +11,7 @@ import net.sourceforge.pmd.stat.DataPoint
 class LongMethodRule : AbstractNcssCountRule(ASTMethodDeclaration::class.java) {
 
     init {
-        setProperty(StatisticalRule.MINIMUM_DESCRIPTOR, 25.0)
+        setProperty(StatisticalRule.MINIMUM_DESCRIPTOR, 50.0)
     }
 
     override fun visit(node: ASTMethodDeclaration, data: Any): Any {
